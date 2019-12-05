@@ -1,23 +1,30 @@
-const intcode: number[] = [1,9,10,3,2,3,11,0,99,30,40,50]
 
-export function intComputer(intcode) {
-    for (let i:number = 0; i < Math.floor((intcode.length / 4)); i++) {
-        let intcodeIndex: number = +i;
-        let opcodeIndex: number = 0 + (4 * intcodeIndex);
-        let valueOneIndex: number = 1 + (4 * intcodeIndex);
-        let valueTwoIndex: number = 2 + (4 * intcodeIndex);
-        let outputIndex: number = 3 + (4 * intcodeIndex);
+export function intComputer(intcode: number[], noun?:number, verb?:number) {
+    let resultIntcode: number [] = intcode;
+    console.log('logging condition of noun & verb: ')
+    console.log((noun != null && verb != null))
+    if (noun != null && verb != null) {
+        resultIntcode.splice(1, 2, noun, verb)
+        console.log('logging resultIntcode: ' + resultIntcode)
+    };
+    for (let i:number = 0; resultIntcode[i] != 99; i+=4 ) {
+        let pointer: number = +i;
+
+        let opcodeIndex: number = pointer;
+        let valueOneIndex: number = pointer + 1;
+        let valueTwoIndex: number = pointer + 2;
+        let outputIndex: number = pointer + 3;
         
-        let curIntcode: number[] = [intcode[opcodeIndex],intcode[valueOneIndex],intcode[valueTwoIndex],intcode[outputIndex]];
-        
+        let curIntcode: number[] = [resultIntcode[opcodeIndex],resultIntcode[valueOneIndex],resultIntcode[valueTwoIndex],resultIntcode[outputIndex]];
+
         let opcode = curIntcode[0];
         let valueOnePos = curIntcode[1];
         let valueTwoPos = curIntcode[2];
         let outputPos = curIntcode[3];
 
-        let valueOne = intcode[valueOnePos];
-        let valueTwo = intcode[valueTwoPos];
-        let output = intcode[outputPos];
+        let valueOne = resultIntcode[valueOnePos];
+        let valueTwo = resultIntcode[valueTwoPos];
+        let output = resultIntcode[outputPos];
 
         if (opcode == 1) {
             //add
@@ -28,11 +35,11 @@ export function intComputer(intcode) {
             let product: number = valueOne * valueTwo;
             output = product
             
-        } else if (opcode == 99) {break}
-    
-        intcode[outputPos] = output;
+        }
+        resultIntcode[outputPos] = output;
+        
     }
-    return intcode
+    return resultIntcode
 
 }    
 
