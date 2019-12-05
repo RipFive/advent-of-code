@@ -29,7 +29,4 @@ console.log(result)
 
 const outputToDetermine: number = 19690720;
 const inputTwo = readInput();
-console.log('logging rawInput before getInputs():')
-console.log(inputTwo)
 const resultTwo = getInputs(inputTwo, outputToDetermine)
-console.log('the result is: ' + resultTwo)

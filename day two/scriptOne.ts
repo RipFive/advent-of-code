@@ -1,11 +1,8 @@
 
 export function intComputer(intcode: number[], noun?:number, verb?:number) {
     let resultIntcode: number [] = intcode;
-    console.log('logging condition of noun & verb: ')
-    console.log((noun != null && verb != null))
     if (noun != null && verb != null) {
         resultIntcode.splice(1, 2, noun, verb)
-        console.log('logging resultIntcode: ' + resultIntcode)
     };
     for (let i:number = 0; resultIntcode[i] != 99; i+=4 ) {
         let pointer: number = +i;
