@@ -1,0 +1,49 @@
+{
+	"name": "advent-of-code",
+	"displayName": "Advent of Code Solutions",
+	"description": "Advent of Code Solutions",
+	"version": "0.0.1",
+	"author": {
+		"name": "Richard Poelderl",
+		"email": "richard.poelderl@gmail.com",
+		"url": "https://github.com/RipFive"
+	},
+	"homepage": "https://github.com/RipFive",
+	"bugs": {
+		"email": "richard.poelderl@gmail.com"
+	},
+	"scripts": {
+		"lin": "tslint --project",
+		"lint": "tslint --project .",
+		"lint:fix": "tslint --project . --fix",
+		"format": "prettier --write \"src/**/*\"",
+		"prettier": "npm run format"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/RipFive/advent-of-code"
+	},
+	"categories": [
+		"Other"
+	],
+	"license": "mit",
+	"private": true,
+	"dependencies": {
+		"is-ci": "^2.0.0",
+		"rxjs": "^6.5.3",
+		"workerpool": "^5.0.2"
+	},
+	"devDependencies": {
+		"@types/node": "^12.12.14",
+		"npm-check-updates": "latest",
+		"prettier": "^1.19.1",
+		"ts-node": "8.5.4",
+		"tsconfig-paths": "^3.9.0",
+		"tslint": "~5.20.1",
+		"tslint-plugin-prettier": "^2.0.1",
+		"typescript": "3.7.3"
+	},
+	"engines": {
+		"node": ">= 12.13.1"
+	}
+}
