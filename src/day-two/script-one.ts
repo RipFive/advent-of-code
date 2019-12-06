@@ -1,39 +1,39 @@
-export function intComputer(intcode: number[], noun?: number, verb?: number): void {
-	let resultIntcode: number[] = intcode;
+export function intComputer(intcode: number[], noun?: number, verb?: number): number[] {
+	const resultIntcode: number[] = intcode;
 	if (noun != null && verb != null) {
 		resultIntcode.splice(1, 2, noun, verb);
 	}
-	for (let i: number = 0; resultIntcode[i] != 99; i += 4) {
-		let pointer: number = +i;
+	for (let i = 0; resultIntcode[i] !== 99; i += 4) {
+		const pointer: number = +i;
 
-		let opcodeIndex: number = pointer;
-		let valueOneIndex: number = pointer + 1;
-		let valueTwoIndex: number = pointer + 2;
-		let outputIndex: number = pointer + 3;
+		const opcodeIndex: number = pointer;
+		const valueOneIndex: number = pointer + 1;
+		const valueTwoIndex: number = pointer + 2;
+		const outputIndex: number = pointer + 3;
 
-		let curIntcode: number[] = [
+		const curIntcode: number[] = [
 			resultIntcode[opcodeIndex],
 			resultIntcode[valueOneIndex],
 			resultIntcode[valueTwoIndex],
 			resultIntcode[outputIndex]
 		];
 
-		let opcode = curIntcode[0];
-		let valueOnePos = curIntcode[1];
-		let valueTwoPos = curIntcode[2];
-		let outputPos = curIntcode[3];
+		const opcode = curIntcode[0];
+		const valueOnePos = curIntcode[1];
+		const valueTwoPos = curIntcode[2];
+		const outputPos = curIntcode[3];
 
-		let valueOne = resultIntcode[valueOnePos];
-		let valueTwo = resultIntcode[valueTwoPos];
+		const valueOne = resultIntcode[valueOnePos];
+		const valueTwo = resultIntcode[valueTwoPos];
 		let output = resultIntcode[outputPos];
 
-		if (opcode == 1) {
-			//add
-			let sum: number = valueOne + valueTwo;
+		if (opcode === 1) {
+			// add
+			const sum: number = valueOne + valueTwo;
 			output = sum;
-		} else if (opcode == 2) {
-			//multiply
-			let product: number = valueOne * valueTwo;
+		} else if (opcode === 2) {
+			// multiply
+			const product: number = valueOne * valueTwo;
 			output = product;
 		}
 		resultIntcode[outputPos] = output;
