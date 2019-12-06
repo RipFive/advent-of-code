@@ -29,6 +29,7 @@
 	"license": "mit",
 	"private": true,
 	"dependencies": {
+		"get-caller-file": "^2.0.5",
 		"is-ci": "^2.0.0",
 		"rxjs": "^6.5.3",
 		"workerpool": "^5.0.2"
