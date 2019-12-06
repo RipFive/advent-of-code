@@ -1,0 +1,32 @@
+{
+	"compilerOptions": {
+		"lib": ["es2019", "esnext.asynciterable"],
+		"module": "commonjs",
+		"target": "es2019",
+		"rootDir": "./src/",
+		"outDir": "./dist/",
+		"sourceMap": true,
+		"noUnusedLocals": true,
+		"declaration": false,
+		"moduleResolution": "node",
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"resolveJsonModule": true,
+		"importHelpers": true,
+		"noImplicitAny": true,
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
+		"noUnusedParameters": true,
+		"strictNullChecks": true,
+		"strictFunctionTypes": true,
+		"strictPropertyInitialization": true,
+		"baseUrl": "./",
+		"paths": {
+			"@lib": ["./node_modules/typescript"],
+			"@lib/*": ["./node_modules/typescript/*"]
+		},
+		"typeRoots": ["./node_modules/@types"]
+	},
+	"include": ["./src/**/*"],
+	"exclude": ["**/node_modules/**/*"]
+}
