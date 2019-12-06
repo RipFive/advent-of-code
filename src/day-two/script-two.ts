@@ -1,6 +1,6 @@
 import { intComputer } from './script-one';
 
-export function getInputs(intcode: number[], target: number) {
+export function getInputs(intcode: number[], target: number): void {
 	console.log('Why is this intcode not the original rawInput?');
 	console.log(intcode);
 	for (let i: number = 0; i < 100; i++) {
