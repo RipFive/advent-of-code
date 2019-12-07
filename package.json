@@ -14,7 +14,7 @@
 	},
 	"scripts": {
 		"lin": "tslint --project",
-		"lint": "tslint --project .",
+		"lint": "./node_modules/.bin/tslint --project .",
 		"lint:fix": "tslint --project . --fix",
 		"format": "prettier --write \"./src/**/*.ts\"",
 		"prettier": "npm run format"

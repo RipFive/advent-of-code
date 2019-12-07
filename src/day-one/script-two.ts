@@ -1,13 +1,13 @@
-import { requiredFuel } from './script-one';
 import { getModules } from './input';
+import { requiredFuel } from './script-one';
 
-let modules = getModules();
+const modules = getModules();
 
 const fuelModules: number[] = modules.map(mass => {
 	let remainder: number = requiredFuel(mass);
 	let totalFuelPerModule: number = requiredFuel(mass);
 	while (remainder > 0) {
-		let additionalFuel = requiredFuel(remainder) > 0 ? requiredFuel(remainder) : 0;
+		const additionalFuel = requiredFuel(remainder) > 0 ? requiredFuel(remainder) : 0;
 		totalFuelPerModule += additionalFuel;
 		remainder = additionalFuel;
 	}

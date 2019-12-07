@@ -3,8 +3,8 @@ import { intComputer } from './script-one';
 export function getInputs(intcode: number[], target: number): void {
 	console.log('Why is this intcode not the original rawInput?');
 	console.log(intcode);
-	for (let i: number = 0; i < 100; i++) {
-		for (let j: number = 0; j < 100; j++) {
+	for (let i = 0; i < 100; i++) {
+		for (let j = 0; j < 100; j++) {
 			console.log('hello from nested loop');
 			const x = intComputer(intcode, i, j)[0];
 			console.log('logging x...');

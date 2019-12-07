@@ -1,8 +1,8 @@
+import { readFileSync } from 'fs';
+import * as getCallerFile from 'get-caller-file';
 import { intComputer } from './script-one';
 import { getInputs } from './script-two';
 import { test } from './test';
-import * as getCallerFile from 'get-caller-file';
-import { readFileSync } from 'fs';
 
 const readInput = () => {
 	const file = getCallerFile()
@@ -19,13 +19,13 @@ const rawInput = readInput();
 
 test();
 
-const noun: number = 12;
-const verb: number = 2;
+const noun = 12;
+const verb = 2;
 
 const result = intComputer(rawInput, noun, verb);
 console.log('the result is: ');
 console.log(result);
 
-const outputToDetermine: number = 19690720;
+const outputToDetermine = 19690720;
 const inputTwo = readInput();
 const resultTwo = getInputs(inputTwo, outputToDetermine);

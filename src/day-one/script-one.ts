@@ -2,20 +2,20 @@ import { getModules } from './input';
 
 const splittedMasses: string[] = getModules();
 
-var fuel: number[] = splittedMasses.map(mass => {
+let fuel: number[] = splittedMasses.map(mass => {
 	return requiredFuel(mass);
 });
 
-var totalFuel: number = fuel.reduce((total, value) => total + value);
+let totalFuel: number = fuel.reduce((total, value) => total + value);
 
 console.log('total fuel required: ' + totalFuel);
 
 export function requiredFuel(mass): number {
-	var mass = mass || 12;
+	let mass = mass || 12;
 
-	var firstCalc = Number(mass) / 3;
-	var secondCalc = Math.floor(firstCalc);
-	var thirdCalc = secondCalc - 2;
+	let firstCalc = Number(mass) / 3;
+	let secondCalc = Math.floor(firstCalc);
+	let thirdCalc = secondCalc - 2;
 
 	return thirdCalc;
 }
