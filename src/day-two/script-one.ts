@@ -1,9 +1,13 @@
 export function intComputer(intcode: number[], noun?: number, verb?: number): number[] {
 	const resultIntcode: number[] = intcode;
-	if (noun != null && verb != null) {
-		resultIntcode.splice(1, 2, noun, verb);
+	if (noun !== null && verb !== null) {
+		resultIntcode[1] = noun;
+		resultIntcode[2] = verb;
 	}
-	for (let i = 0; resultIntcode[i] !== 99; i += 4) {
+	for (let i = 0; i < resultIntcode.length; i += 4) {
+		if (resultIntcode[i] === 99) {
+			break;
+		}
 		const pointer: number = +i;
 
 		const opcodeIndex: number = pointer;

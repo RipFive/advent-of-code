@@ -17,7 +17,7 @@ const readInput = () => {
 };
 const rawInput = readInput();
 
-test();
+// test();
 
 const noun = 12;
 const verb = 2;
