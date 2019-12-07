@@ -1,5 +1,5 @@
 export function getModules() {
-    const input: string = `60052
+	const input: string = `60052
 61005
 114258
 66223
@@ -100,6 +100,6 @@ export function getModules() {
 138445
 70673`;
 
-    var splittedMasses: string[] = input.split(/\n/);
-    return splittedMasses
+	var splittedMasses: string[] = input.split(/\n/);
+	return splittedMasses;
 }
