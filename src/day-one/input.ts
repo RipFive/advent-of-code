@@ -100,6 +100,6 @@ export function getModules() {
 138445
 70673`;
 
-	let splittedMasses: string[] = input.split(/\n/);
+	const splittedMasses: string[] = input.split(/\n/).map(numberAsStr => parseInt(numberAsStr, 10));
 	return splittedMasses;
 }
