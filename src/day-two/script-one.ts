@@ -1,46 +1,36 @@
 export function intComputer(intcode: number[], noun?: number, verb?: number): number[] {
-	const resultIntcode: number[] = intcode;
-	if (noun !== null && verb !== null) {
-		resultIntcode[1] = noun;
-		resultIntcode[2] = verb;
-	}
-	for (let i = 0; i < resultIntcode.length; i += 4) {
-		if (resultIntcode[i] === 99) {
+	const copiedIntcode: number[] = [...intcode];
+
+	copiedIntcode[1] = noun || copiedIntcode[1];
+	copiedIntcode[2] = verb || copiedIntcode[2];
+
+	for (let i = 0; i < copiedIntcode.length; i += 4) {
+		if (copiedIntcode[i] === 99) {
 			break;
 		}
-		const pointer: number = +i;
 
-		const opcodeIndex: number = pointer;
-		const valueOneIndex: number = pointer + 1;
-		const valueTwoIndex: number = pointer + 2;
-		const outputIndex: number = pointer + 3;
+		const opcodeIndex: number = i;
+		const valueOneIndex: number = i + 1;
+		const valueTwoIndex: number = i + 2;
+		const outputIndex: number = i + 3;
 
-		const curIntcode: number[] = [
-			resultIntcode[opcodeIndex],
-			resultIntcode[valueOneIndex],
-			resultIntcode[valueTwoIndex],
-			resultIntcode[outputIndex]
-		];
+		const opcode = copiedIntcode[opcodeIndex];
+		const valueOnePos = copiedIntcode[valueOneIndex];
+		const valueTwoPos = copiedIntcode[valueTwoIndex];
+		const outputPos = copiedIntcode[outputIndex];
 
-		const opcode = curIntcode[0];
-		const valueOnePos = curIntcode[1];
-		const valueTwoPos = curIntcode[2];
-		const outputPos = curIntcode[3];
-
-		const valueOne = resultIntcode[valueOnePos];
-		const valueTwo = resultIntcode[valueTwoPos];
-		let output = resultIntcode[outputPos];
+		const valueOne = copiedIntcode[valueOnePos];
+		const valueTwo = copiedIntcode[valueTwoPos];
+		let output = copiedIntcode[outputPos];
 
 		if (opcode === 1) {
 			// add
-			const sum: number = valueOne + valueTwo;
-			output = sum;
+			output = valueOne + valueTwo;
 		} else if (opcode === 2) {
 			// multiply
-			const product: number = valueOne * valueTwo;
-			output = product;
+			output = valueOne * valueTwo;
 		}
-		resultIntcode[outputPos] = output;
+		copiedIntcode[outputPos] = output;
 	}
-	return resultIntcode;
+	return copiedIntcode;
 }

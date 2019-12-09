@@ -1,7 +1,7 @@
 import { strict as assert } from 'assert';
 import { intComputer } from './script-one';
 
-export function test() {
+export function testIntComputer() {
 	const tests = [
 		{ test: [1, 0, 0, 0, 99], answer: [2, 0, 0, 0, 99] },
 		{ test: [2, 3, 0, 3, 99], answer: [2, 3, 0, 6, 99] },
@@ -16,3 +16,5 @@ export function test() {
 		}
 	}
 }
+
+export const testSecondResult = (noun: number, verb: number) => assert.deepEqual(100 * noun + verb, 1202);

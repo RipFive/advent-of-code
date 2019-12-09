@@ -2,7 +2,7 @@ import { readFileSync } from 'fs';
 import * as getCallerFile from 'get-caller-file';
 import { intComputer } from './script-one';
 import { getInputs } from './script-two';
-import { test } from './test';
+import { testIntComputer, testSecondResult } from './test';
 
 const readInput = () => {
 	const file = getCallerFile()
@@ -17,15 +17,15 @@ const readInput = () => {
 };
 const rawInput = readInput();
 
-// test();
+testIntComputer();
 
-const noun = 12;
-const verb = 2;
-
-const result = intComputer(rawInput, noun, verb);
+const result = intComputer(rawInput, 12, 2);
 console.log('the result is: ');
 console.log(result);
 
+testSecondResult(12, 2);
+
 const outputToDetermine = 19690720;
-const inputTwo = readInput();
-const resultTwo = getInputs(inputTwo, outputToDetermine);
+
+const resultTwo = getInputs(rawInput, outputToDetermine);
+console.log('the second result is: ', resultTwo);
