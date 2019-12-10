@@ -12,7 +12,7 @@ const example1 = [
 ];
 
 const example2: string[][] = [
-	['R75', 'D30', 'R83', 'U83', 'L12', 'D49', 'R71', 'U7', 'L72'],
+	['R75', 'D30', 'R83', 'U83', 'L12', 'D49', 'R71', 'U7', 'L72'], // At D49 it intersects pos 146, 11
 	['U62', 'R66', 'U55', 'R34', 'D71', 'R55', 'D58', 'R83']
 ];
 const example3: string[][] = [
@@ -33,34 +33,40 @@ const getPaths = wires => {
 				case 'R':
 					for (let i = 0; i < distance; i++) {
 						gridPos[wireIx].splice(0, 1, gridPos[wireIx][0] + 1);
-						paths[gridPos[wireIx].toString()] = paths[gridPos[wireIx].toString()] + 1 || 1;
+						paths[gridPos[wireIx].toString()] =
+							wireIx !== 0 ? paths[gridPos[wireIx].toString()] + 1 : 1 || 1;
 					}
 					break;
 				case 'L':
 					for (let i = 0; i < distance; i++) {
 						gridPos[wireIx].splice(0, 1, gridPos[wireIx][0] - 1);
-						paths[gridPos[wireIx].toString()] = paths[gridPos[wireIx].toString()] + 1 || 1;
+						paths[gridPos[wireIx].toString()] =
+							wireIx !== 0 ? paths[gridPos[wireIx].toString()] + 1 : 1 || 1;
 					}
 					break;
 				case 'U':
 					for (let i = 0; i < distance; i++) {
 						gridPos[wireIx].splice(1, 1, gridPos[wireIx][1] + 1);
-						paths[gridPos[wireIx].toString()] = paths[gridPos[wireIx].toString()] + 1 || 1;
+						paths[gridPos[wireIx].toString()] =
+							wireIx !== 0 ? paths[gridPos[wireIx].toString()] + 1 : 1 || 1;
 					}
 					break;
 				case 'D':
 					for (let i = 0; i < distance; i++) {
 						gridPos[wireIx][1] = gridPos[wireIx][1] - 1;
-						paths[gridPos[wireIx].toString()] = paths[gridPos[wireIx].toString()] + 1 || 1;
+						paths[gridPos[wireIx].toString()] =
+							wireIx !== 0 ? paths[gridPos[wireIx].toString()] + 1 : 1 || 1;
 					}
 					break;
 			}
+
+			console.log(JSON.stringify(gridPos[wireIx]));
 		});
 	});
 	return paths;
 };
 
-const paths = getPaths(example2);
+const paths = getPaths(wires);
 
 const getDistanceToClosestIntersection = (pathObj: {}) => {
 	const obj = {};
@@ -69,12 +75,15 @@ const getDistanceToClosestIntersection = (pathObj: {}) => {
 		if (pathObj[path] > 1) {
 			const posArr = path.split(',');
 			if (!obj[path]) {
-				obj[path] = posArr.map(pos => Number(pos)).reduce((total, increment) => total + Math.abs(increment));
+				obj[path] = posArr
+					.map(pos => Number(pos))
+					.reduce((total, increment) => Math.abs(total) + Math.abs(increment));
 			}
 		}
 	}
-	const closesIntersection =  Object.keys(obj).reduce((prevDist, curDist) =>
-		obj[prevDist] < obj[curDist] ? prevDist : curDist);
+	const closesIntersection = Object.keys(obj).reduce((prevDist, curDist) =>
+		obj[prevDist] < obj[curDist] ? prevDist : curDist
+	);
 	return obj[closesIntersection];
 };
 
