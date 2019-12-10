@@ -11,4 +11,7 @@ const rawInput = readFileSync(inputFilePath)
 	.split(/\n/)
 	.map(wire => wire.split(','));
 
-console.log(getDistanceToClosestIntersection(getPaths(rawInput)));
+const paths = getPaths(rawInput);
+console.log(JSON.stringify(paths));
+
+console.log(getDistanceToClosestIntersection(paths, 'time'));

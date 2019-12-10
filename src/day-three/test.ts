@@ -19,7 +19,7 @@ export function test() {
 	];
 	const answer3 = 135;
 
-	assert.deepStrictEqual(getDistanceToClosestIntersection(getPaths(example1)), answer1);
-	assert.deepStrictEqual(getDistanceToClosestIntersection(getPaths(example2)), answer2);
-	assert.deepStrictEqual(getDistanceToClosestIntersection(getPaths(example3)), answer3);
+	assert.deepStrictEqual(getDistanceToClosestIntersection({ pathObj: getPaths(example1) }), answer1);
+	assert.deepStrictEqual(getDistanceToClosestIntersection({ pathObj: getPaths(example2) }), answer2);
+	assert.deepStrictEqual(getDistanceToClosestIntersection({ pathObj: getPaths(example3) }), answer3);
 }
