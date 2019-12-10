@@ -17,7 +17,7 @@
 		"forin": true,
 		"import-blacklist": [true, "rxjs/Rx"],
 		"import-spacing": true,
-		"indent": [true, "tabs"],
+		"indent": [true, "tabs", 4],
 		"interface-name": false,
 		"interface-over-type-literal": true,
 		"label-position": true,
