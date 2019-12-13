@@ -1,6 +1,6 @@
-import { example1 } from './test';
+import { example3 } from './test';
 
-export function getPaths(wires: string[][] = example1): { [key: string]: number } {
+export function getPaths(wires: string[][] = example3): { [key: string]: number } {
 	const paths: { [key: string]: { [key: string]: number } } = { '[0,0]': {} };
 	const gridPos: [[number, number], [number, number]] = [
 		[0, 0],
@@ -23,19 +23,30 @@ export function getPaths(wires: string[][] = example1): { [key: string]: number 
 								// stepsNeededWire1: 0
 							};
 						}
-						paths[gridPos[wireIx].toString()].wiresPassed =
-							paths[gridPos[wireIx].toString()].wiresPassed + 1 || 1;
-						if (paths[gridPos[wireIx].toString()].wiresPassed > wireIx + 1) {
-							paths[gridPos[wireIx].toString()].wiresPassed--;
-						}
 
 						paths[gridPos[wireIx].toString()]['stepsNeededWire' + wireIx] =
 							stepsCounterWires['wire' + wireIx];
+
+						paths[gridPos[wireIx].toString()].wiresPassed =
+							Object.values(paths[gridPos[wireIx].toString()]).length - 1;
+
+						if (
+							paths[gridPos[wireIx].toString()].wiresPassed >= 2 &&
+							Object.values(paths[gridPos[wireIx].toString()]).length < 3
+						) {
+							console.log(gridPos[wireIx].toString(), paths[gridPos[wireIx].toString()]);
+							const a = 0;
+						}
 					}
+
 					break;
 				case 'L':
 					for (let i = 0; i < distance; i++) {
 						gridPos[wireIx].splice(0, 1, gridPos[wireIx][0] - 1);
+						if (gridPos[wireIx].toString() === '-998,611') {
+							console.log(gridPos[wireIx].toString(), paths[gridPos[wireIx].toString()]);
+							const a = 0;
+						}
 						stepsCounterWires['wire' + wireIx]++;
 						if (!paths[gridPos[wireIx].toString()]) {
 							paths[gridPos[wireIx].toString()] = {
@@ -44,14 +55,20 @@ export function getPaths(wires: string[][] = example1): { [key: string]: number 
 								// stepsNeededWire1: 0
 							};
 						}
-						paths[gridPos[wireIx].toString()].wiresPassed =
-							paths[gridPos[wireIx].toString()].wiresPassed + 1 || 1;
-						if (paths[gridPos[wireIx].toString()].wiresPassed > wireIx + 1) {
-							paths[gridPos[wireIx].toString()].wiresPassed--;
-						}
 
 						paths[gridPos[wireIx].toString()]['stepsNeededWire' + wireIx] =
 							stepsCounterWires['wire' + wireIx];
+
+						paths[gridPos[wireIx].toString()].wiresPassed =
+							Object.values(paths[gridPos[wireIx].toString()]).length - 1;
+
+						if (
+							paths[gridPos[wireIx].toString()].wiresPassed >= 2 &&
+							Object.values(paths[gridPos[wireIx].toString()]).length < 3
+						) {
+							console.log(gridPos[wireIx].toString(), paths[gridPos[wireIx].toString()]);
+							const a = 0;
+						}
 					}
 					break;
 				case 'U':
@@ -66,14 +83,19 @@ export function getPaths(wires: string[][] = example1): { [key: string]: number 
 							};
 						}
 
-						paths[gridPos[wireIx].toString()].wiresPassed =
-							paths[gridPos[wireIx].toString()].wiresPassed + 1 || 1;
-						if (paths[gridPos[wireIx].toString()].wiresPassed > wireIx + 1) {
-							paths[gridPos[wireIx].toString()].wiresPassed--;
-						}
-
 						paths[gridPos[wireIx].toString()]['stepsNeededWire' + wireIx] =
 							stepsCounterWires['wire' + wireIx];
+
+						paths[gridPos[wireIx].toString()].wiresPassed =
+							Object.values(paths[gridPos[wireIx].toString()]).length - 1;
+
+						if (
+							paths[gridPos[wireIx].toString()].wiresPassed >= 2 &&
+							Object.values(paths[gridPos[wireIx].toString()]).length < 3
+						) {
+							console.log(gridPos[wireIx].toString(), paths[gridPos[wireIx].toString()]);
+							const a = 0;
+						}
 					}
 					break;
 				case 'D':
@@ -87,14 +109,20 @@ export function getPaths(wires: string[][] = example1): { [key: string]: number 
 								// stepsNeededWire1: 0
 							};
 						}
-						paths[gridPos[wireIx].toString()].wiresPassed =
-							paths[gridPos[wireIx].toString()].wiresPassed + 1 || 1;
-						if (paths[gridPos[wireIx].toString()].wiresPassed > wireIx + 1) {
-							paths[gridPos[wireIx].toString()].wiresPassed--;
-						}
 
 						paths[gridPos[wireIx].toString()]['stepsNeededWire' + wireIx] =
 							stepsCounterWires['wire' + wireIx];
+
+						paths[gridPos[wireIx].toString()].wiresPassed =
+							Object.values(paths[gridPos[wireIx].toString()]).length - 1;
+
+						if (
+							paths[gridPos[wireIx].toString()].wiresPassed >= 2 &&
+							Object.values(paths[gridPos[wireIx].toString()]).length < 3
+						) {
+							console.log(gridPos[wireIx].toString(), paths[gridPos[wireIx].toString()]);
+							const a = 0;
+						}
 					}
 					break;
 			}
@@ -104,6 +132,6 @@ export function getPaths(wires: string[][] = example1): { [key: string]: number 
 }
 
 if (require.main === module) {
-	getPaths();
+	console.log(getPaths());
 	console.log('Note: This time getPaths() ran as main.');
 }

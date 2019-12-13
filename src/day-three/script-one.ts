@@ -3,14 +3,14 @@ import { getPaths } from './getPaths';
 import { answer1, answer2, answer3, example1, example2, example3, test } from './test';
 
 // test();
-const test = true; // turn off if you want to run the real input
+const test = false; // turn off if you want to run the real input
 
 const inputFilePath = __dirname.concat('\\input.txt');
-const answer = test === true ? answer1 : 'unknown';
+const answer = test === true ? answer3 : 'unknown';
 
 const rawInput =
 	test === true
-		? example1
+		? example3
 		: readFileSync(inputFilePath)
 				.toString()
 				.split(/\n/)
@@ -19,6 +19,7 @@ const rawInput =
 const wirePaths = getPaths(rawInput);
 
 const wireIntersections = getIntersectionsFromPaths(wirePaths, rawInput);
+console.log(wirePaths, wireIntersections);
 
 console.log('closest dist', getClosestIntersectionByManhattenDist(wireIntersections), 'exp. answer', answer[0]);
 console.log('shortest dist', getClosestIntersectionBySteps(wireIntersections), 'exp. answer', answer[1]);
@@ -62,6 +63,7 @@ function getIntersectionsFromPaths(paths: {}, input) {
 	const positions = Object.keys(paths);
 	for (const position of positions) {
 		if (paths[position].wiresPassed > 1) {
+			console.log(position);
 			intersections[position] = { ...paths[position] };
 		}
 	}
