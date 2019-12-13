@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 export function getDistanceToClosestIntersection(pathObj: {}, unit: 'time' | 'distance') {
 	console.log(unit);
 	console.log('time' === 'time');
@@ -27,3 +28,5 @@ export function getDistanceToClosestIntersection(pathObj: {}, unit: 'time' | 'di
 	);
 	return obj[closestIntersection][unit];
 }
+=======
+>>>>>>> day3-solution2
