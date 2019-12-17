@@ -18,14 +18,8 @@ export const answer1 = [6, 30];
 export const answer2 = [159, 610];
 export const answer3 = [135, 410];
 
-<<<<<<< HEAD
-	assert.deepStrictEqual(getDistanceToClosestIntersection({ pathObj: getPaths(example1) }), answer1);
-	assert.deepStrictEqual(getDistanceToClosestIntersection({ pathObj: getPaths(example2) }), answer2);
-	assert.deepStrictEqual(getDistanceToClosestIntersection({ pathObj: getPaths(example3) }), answer3);
-=======
 export function test() {
 	// assert.deepStrictEqual(getDistanceToClosestIntersection(getPaths(example1)), answer1);
 	// assert.deepStrictEqual(getDistanceToClosestIntersection(getPaths(example2)), answer2);
 	// assert.deepStrictEqual(getDistanceToClosestIntersection(getPaths(example3)), answer3);
->>>>>>> day3-solution2
 }
