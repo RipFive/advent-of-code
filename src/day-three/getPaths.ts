@@ -11,8 +11,6 @@ export function getPaths(wires: string[][] = example3): { [key: string]: number 
 		stepsCounterWires['wire' + wireIx] = 0;
 		wire.forEach(movement => {
 			const distance: number = parseInt(movement.substr(1, movement.length - 1), 10);
-			stepCounter = stepCounter + distance;
-			wireStepContainer[wireIx] = [stepCounter];
 			switch (movement.substr(0, 1)) {
 				case 'R':
 					for (let i = 0; i < distance; i++) {
