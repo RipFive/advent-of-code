@@ -8,12 +8,6 @@ const test = false; // turn off if you want to run the real input
 const inputFilePath = __dirname.concat('\\input.txt');
 const answer = test === true ? answer3 : 'unknown';
 
-<<<<<<< HEAD
-const paths = getPaths(rawInput);
-console.log(JSON.stringify(paths));
-
-console.log(getDistanceToClosestIntersection(paths, 'time'));
-=======
 const rawInput =
 	test === true
 		? example3
@@ -75,4 +69,3 @@ function getIntersectionsFromPaths(paths: {}, input) {
 	}
 	return intersections;
 }
->>>>>>> day3-solution2
