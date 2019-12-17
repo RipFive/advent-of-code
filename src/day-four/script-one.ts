@@ -1,15 +1,14 @@
+import { CONNREFUSED } from 'dns';
 import { readFileSync } from 'fs';
 
 // TEST
-const examples = [111111, 223450, 123789];
-const results = [true, false, false];
+const examples = [112233, 123444, 111122];
+const results = [true, false, true];
 examples.forEach((example, ix) => {
-	console.log(
-		'Test ' + ix + ' results in: ',
-		meetsCriteria(example, [-100000000, 100000000]),
-		' expected: ',
-		results[ix]
-	);
+	console.log('Test ' + ix + ' results in: ');
+	console.log(meetsCriteria(example, [-100000000, 100000000]));
+	console.log('expected: ');
+	console.log(results[ix]);
 });
 // TEST END
 
@@ -39,19 +38,37 @@ function meetsCriteria(pw: number, range: number[]): boolean {
 		.map(Number);
 	const len: boolean = pw.toString().length === 6 ? true : false;
 	const inRange: boolean = pw >= range[0] && pw <= range[1] ? true : false;
-	let double = false;
+	let adjacent = false;
 	let neverDecreases = true;
+	let adjacentNoLargerGroup = false;
+	const indexesOfAdjacentDigits = {};
 	for (const i in sorted) {
 		if (sorted.length > 0) {
+			const indeces: number[] = [];
 			if (sorted[i] === sorted[Number(i) + 1]) {
-				double = true;
+				adjacent = true;
+				if (indeces.indexOf(i) === -1) {
+					indeces.push(Number(i), Number(i) + 1);
+				}
+				indexesOfAdjacentDigits[sorted[i]] =
+					indexesOfAdjacentDigits[sorted[i]] === undefined
+						? [...indeces]
+						: [...indexesOfAdjacentDigits[sorted[i]], indeces[1]];
 			}
 			if (sorted[i] > sorted[Number(i) + 1]) {
 				neverDecreases = false;
 			}
 		}
 	}
-	if (len && inRange && double && neverDecreases) {
+	const adjacentDigits = Object.keys(indexesOfAdjacentDigits);
+	const newObj = adjacentDigits.filter(digit => {
+		return indexesOfAdjacentDigits[digit].length === 2;
+	});
+	if (newObj.length > 0) {
+		adjacentNoLargerGroup = true;
+	}
+
+	if (len && inRange && adjacent && neverDecreases && adjacentNoLargerGroup) {
 		return true;
 	} else {
 		return false;
