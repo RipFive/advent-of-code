@@ -27,6 +27,25 @@ for (let password = rawInput[0]; password <= rawInput[1]; password++) {
 }
 
 console.log('the number of matching passwords is: ', matchingPasswords.length);
+function meetsCriteria(pw: number, range: number[]): boolean {
+	if (!hasValidLength(pw)) {
+		return false;
+	}
+	if (!isInRange(pw, range)) {
+		return false;
+	}
+	if (!isNeverDecreasing(pw)) {
+		return false;
+	}
+	if (!hasAdjacent(pw)) {
+		return false;
+	}
+	if (!adjacentHasNoLargerGroup(pw)) {
+		return false;
+	}
+	return true;
+}
+
 function hasValidLength(pw: number): boolean {
 	return pw.toString().length === 6;
 }
@@ -52,52 +71,24 @@ function hasAdjacent(pw: number): boolean {
 	}
 	return false;
 }
-function meetsCriteria(pw: number, range: number[]): boolean {
-	const sorted = pw
-		.toString()
-		.split('')
-		.sort()
-		.map(Number);
-	if (!hasValidLength(pw)) {
-		return false;
-	}
-	if (!isInRange(pw, range)) {
-		return false;
-	}
-	if (!isNeverDecreasing(pw)) {
-		return false;
-	}
+
+function adjacentHasNoLargerGroup(pw: number): boolean {
 	if (!hasAdjacent(pw)) {
 		return false;
 	}
-	let adjacentNoLargerGroup = false;
-	const indexesOfAdjacentDigits = {};
-	for (const i in sorted) {
-		if (sorted.length > 0) {
-			const indeces: number[] = [];
-			if (sorted[i] === sorted[Number(i) + 1]) {
-				hasAdjacent = true;
-				if (indeces.indexOf(i) === -1) {
-					indeces.push(Number(i), Number(i) + 1);
-				}
-				indexesOfAdjacentDigits[sorted[i]] =
-					indexesOfAdjacentDigits[sorted[i]] === undefined
-						? [...indeces]
-						: [...indexesOfAdjacentDigits[sorted[i]], indeces[1]];
-			}
-		}
-	}
-	const adjacentDigits = Object.keys(indexesOfAdjacentDigits);
-	const newObj = adjacentDigits.filter(digit => {
-		return indexesOfAdjacentDigits[digit].length === 2;
-	});
-	if (newObj.length > 0) {
-		adjacentNoLargerGroup = true;
-	}
 
-	if (adjacentNoLargerGroup) {
-		return true;
-	} else {
-		return false;
+	const arrOfDigits = pw.toString().split('');
+	for (const i in arrOfDigits) {
+		if (arrOfDigits.length > 0) {
+			const digit = arrOfDigits[i];
+			if (
+				digit === arrOfDigits[Number(i) + 1] &&
+				digit !== arrOfDigits[Number(i) + 2] &&
+				digit !== arrOfDigits[Number(i) - 1]
+			) {
+				return true;
+			}
+			return false;
+		}
 	}
 }
