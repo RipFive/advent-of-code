@@ -21,13 +21,6 @@ const rawInput = readFileSync(filePath)
 const matchingPasswords = [];
 
 for (let password = rawInput[0]; password <= rawInput[1]; password++) {
-	if (!hasValidLength(pw)) {
-		return false;
-	}
-	if (!isInRange(pw, range)) {
-		return false;
-	}
-
 	if (meetsCriteria(password, rawInput)) {
 		matchingPasswords.push(password);
 	}
@@ -43,6 +36,9 @@ function meetsCriteria(pw: number, range: number[]): boolean {
 		.split('')
 		.sort()
 		.map(Number);
+	if (!hasValidLength(pw)) {
+		return false;
+	}
 	const isInRange: boolean = pw >= range[0] && pw <= range[1] ? true : false;
 	let hasAdjacent = false;
 	let neverDecreases = true;
