@@ -78,17 +78,15 @@ function adjacentHasNoLargerGroup(pw: number): boolean {
 	}
 
 	const arrOfDigits = pw.toString().split('');
-	for (const i in arrOfDigits) {
-		if (arrOfDigits.length > 0) {
-			const digit = arrOfDigits[i];
-			if (
-				digit === arrOfDigits[Number(i) + 1] &&
-				digit !== arrOfDigits[Number(i) + 2] &&
-				digit !== arrOfDigits[Number(i) - 1]
-			) {
-				return true;
-			}
-			return false;
+	for (let i = 0; i < arrOfDigits.length; i++) {
+		const digit = arrOfDigits[i];
+		if (
+			digit === arrOfDigits[Number(i) + 1] &&
+			digit !== arrOfDigits[Number(i) + 2] &&
+			digit !== arrOfDigits[Number(i) - 1]
+		) {
+			return true;
 		}
 	}
+	return false;
 }
