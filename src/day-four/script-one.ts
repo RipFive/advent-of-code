@@ -33,6 +33,15 @@ function hasValidLength(pw: number): boolean {
 function isInRange(pw: number, range: number[]): boolean {
 	return pw >= range[0] && pw <= range[1];
 }
+function isNeverDecreasing(pw: number): boolean {
+	const str = pw.toString();
+	for (let i = 0; i < str.length; i++) {
+		if (str[i] > str[Number(i) + 1]) {
+			return false;
+		}
+	}
+	return true;
+}
 function meetsCriteria(pw: number, range: number[]): boolean {
 	const sorted = pw
 		.toString()
@@ -45,8 +54,10 @@ function meetsCriteria(pw: number, range: number[]): boolean {
 	if (!isInRange(pw, range)) {
 		return false;
 	}
+	if (!isNeverDecreasing(pw)) {
+		return false;
+	}
 	let hasAdjacent = false;
-	let neverDecreases = true;
 	let adjacentNoLargerGroup = false;
 	const indexesOfAdjacentDigits = {};
 	for (const i in sorted) {
@@ -61,9 +72,6 @@ function meetsCriteria(pw: number, range: number[]): boolean {
 					indexesOfAdjacentDigits[sorted[i]] === undefined
 						? [...indeces]
 						: [...indexesOfAdjacentDigits[sorted[i]], indeces[1]];
-			}
-			if (sorted[i] > sorted[Number(i) + 1]) {
-				neverDecreases = false;
 			}
 		}
 	}
