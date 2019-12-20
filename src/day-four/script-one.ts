@@ -27,8 +27,11 @@ for (let password = rawInput[0]; password <= rawInput[1]; password++) {
 }
 
 console.log('the number of matching passwords is: ', matchingPasswords.length);
-function hasValidLength(pw: number) {
+function hasValidLength(pw: number): boolean {
 	return pw.toString().length === 6;
+}
+function isInRange(pw: number, range: number[]): boolean {
+	return pw >= range[0] && pw <= range[1];
 }
 function meetsCriteria(pw: number, range: number[]): boolean {
 	const sorted = pw
@@ -39,7 +42,9 @@ function meetsCriteria(pw: number, range: number[]): boolean {
 	if (!hasValidLength(pw)) {
 		return false;
 	}
-	const isInRange: boolean = pw >= range[0] && pw <= range[1] ? true : false;
+	if (!isInRange(pw, range)) {
+		return false;
+	}
 	let hasAdjacent = false;
 	let neverDecreases = true;
 	let adjacentNoLargerGroup = false;
