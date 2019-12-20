@@ -1,4 +1,3 @@
-import { CONNREFUSED } from 'dns';
 import { readFileSync } from 'fs';
 
 // TEST
@@ -22,23 +21,30 @@ const rawInput = readFileSync(filePath)
 const matchingPasswords = [];
 
 for (let password = rawInput[0]; password <= rawInput[1]; password++) {
-	if (password === 233333) {
+	if (!hasValidLength(pw)) {
+		return false;
 	}
+	if (!isInRange(pw, range)) {
+		return false;
+	}
+
 	if (meetsCriteria(password, rawInput)) {
 		matchingPasswords.push(password);
 	}
 }
 
 console.log('the number of matching passwords is: ', matchingPasswords.length);
-
+function hasValidLength(pw: number) {
+	return pw.toString().length === 6;
+}
 function meetsCriteria(pw: number, range: number[]): boolean {
 	const sorted = pw
 		.toString()
 		.split('')
+		.sort()
 		.map(Number);
-	const len: boolean = pw.toString().length === 6 ? true : false;
-	const inRange: boolean = pw >= range[0] && pw <= range[1] ? true : false;
-	let adjacent = false;
+	const isInRange: boolean = pw >= range[0] && pw <= range[1] ? true : false;
+	let hasAdjacent = false;
 	let neverDecreases = true;
 	let adjacentNoLargerGroup = false;
 	const indexesOfAdjacentDigits = {};
@@ -46,7 +52,7 @@ function meetsCriteria(pw: number, range: number[]): boolean {
 		if (sorted.length > 0) {
 			const indeces: number[] = [];
 			if (sorted[i] === sorted[Number(i) + 1]) {
-				adjacent = true;
+				hasAdjacent = true;
 				if (indeces.indexOf(i) === -1) {
 					indeces.push(Number(i), Number(i) + 1);
 				}
@@ -68,7 +74,7 @@ function meetsCriteria(pw: number, range: number[]): boolean {
 		adjacentNoLargerGroup = true;
 	}
 
-	if (len && inRange && adjacent && neverDecreases && adjacentNoLargerGroup) {
+	if (isInRange && hasAdjacent && neverDecreases && adjacentNoLargerGroup) {
 		return true;
 	} else {
 		return false;
